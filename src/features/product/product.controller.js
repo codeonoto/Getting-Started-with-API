@@ -2,7 +2,7 @@ import ProductModel from './product.model.js';
 
 export default class ProductController {
   getAllProducts(req, res) {
-    const products = ProductModel.GetAll();
+    const products = ProductModel.getAll();
     res.status(200).send(products);
   }
 
@@ -24,5 +24,13 @@ export default class ProductController {
 
   rateProduct(req, res) {}
 
-  getOneProduct(req, res) {}
+  getOneProduct(req, res) {
+    const id = req.params.id;
+    const product = ProductModel.get(id);
+    if (!product) {
+      res.status(404).send('Product Not Found');
+    } else {
+      return res.status(200).send(product);
+    }
+  }
 }
