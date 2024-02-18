@@ -23,6 +23,17 @@ export default class ProductModel {
     products.push(product);
     return product;
   }
+
+  static filter(minPrice, maxPrice, category) {
+    const result = products.filter((product) => {
+      return (
+        (!minPrice || product.price >= minPrice) &&
+        (!maxPrice || product.price <= maxPrice) &&
+        (!category || product.category == category)
+      );
+    });
+    return result;
+  }
 }
 
 var products = [
@@ -31,7 +42,7 @@ var products = [
     'Product 1',
     'Description for Product 1',
     'https://m.media-amazon.com/images/I/51-nXsSRfZL._SX328_BO1,204,203,200_.jpg',
-    'Cateogory1',
+    'Kids',
     19.99
   ),
   new ProductModel(
@@ -39,7 +50,7 @@ var products = [
     'Product 2',
     'Description for Product 2',
     'https://m.media-amazon.com/images/I/51xwGSNX-EL._SX356_BO1,204,203,200_.jpg',
-    'Cateogory2',
+    'Boys',
     29.99,
     ['M', 'XL']
   ),
@@ -48,7 +59,7 @@ var products = [
     'Product 3',
     'Description for Product 3',
     'https://m.media-amazon.com/images/I/31PBdo581fL._SX317_BO1,204,203,200_.jpg',
-    'Cateogory3',
+    'Girls',
     39.99,
     ['M', 'XL', 'S']
   ),
